@@ -7,10 +7,14 @@ import os.path
 #valid file name is 40, name[:40]
 #for the file sent
 def walk_dir_sent(dir, fileinfo, topdown=True):
+	matches = []
 	for root, dirs, files in os.walk(dir):
 		for name in files:
-			fileinfo.write(os.path.join(name)+ '\n')
+			#fileinfo.write(os.path.join(name)+ '\n')
+			matches.append(os.path.join(name))
+	print sorted(matches, key = os.path.getmtime)
 
+			
 #for the file received
 def walk_dir_received(dir, fileinfo, topdown=True):
 	for root, dirs, files in os.walk(dir):
