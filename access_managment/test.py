@@ -6,3 +6,8 @@ print l.find('15:37:52')
 print l[0]
 
 print l [12:-1]
+print l[21:25]
+
+s = '27/04/2016  17:17:33'
+
+print s[12:]
