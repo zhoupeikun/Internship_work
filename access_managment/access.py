@@ -1,7 +1,7 @@
 import os
 import time
 
-event_file = open('C:/Users/pzhou/Desktop/access_managment/test.csv', 'r')
+event_file = open('test.csv', 'r')
 
 # today_time = time.strftime("%d/%m/%Y", time.localtime())
 today_time = '27/04/2016'
@@ -51,5 +51,14 @@ print result
 
 result_file = open("result.xls", 'w')
 
+
 for key in result:
-	result_file.write(key + '\t' + result[key] + '\n')
+	if int(result[key][12:14]) > 8 :
+		if int(result[key][21:23]) < 17 :
+			result_file.write(key + '\t' + result[key] + '\tArrived Later and Left Later' + '\n')
+		else :
+			result_file.write(key + '\t' + result[key] + '\tArrived Later' + '\n')
+	elif int(result[key][21:23]) < 17 :
+		result_file.write(key + '\t' + result[key] + '\tLeft early' + '\n')
+	else: 
+		result_file.write(key + '\t' + result[key] + '\n')
