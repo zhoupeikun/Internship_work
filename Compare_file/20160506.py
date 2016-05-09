@@ -13,10 +13,11 @@ def walk_dir_sent(folder):
     matches = []
     name_complet = []
     name_list = []
-    for root, dirnames, filenames in os.walk(folder):
-        for filename in filenames:
-            matches.append(os.path.join(root, filename))  
-    # complet root and name sorted     
+    #for filenames in os.listdir(folder):
+    for filename in os.listdir(folder):
+        if(os.path.isfile(folder + filename)):
+            matches.append(os.path.join(folder, filename))  
+    # complet root and name sorted by modified time
     sorted_matches =  sorted(matches, key=os.path.getmtime)
     # complet file name including type
     for name in sorted_matches:
@@ -27,10 +28,10 @@ def walk_dir_sent(folder):
     return name_complet
 
 # Record BCL_Statistics file generated
-bcl_sent_name = walk_dir_sent('XXXXXX:/BCL_Statistics/')
+bcl_sent_name = walk_dir_sent('J:/Plexus Export File/BCL_Statistics/')
 
-#Record FINREP file generated
-finrep_sent_name = walk_dir_sent('XXXXXX:/FINREP/')
+# Record FINREP file generated
+finrep_sent_name = walk_dir_sent('J:/Plexus Export File/FINREP/')
 
 
 # Function record file have been received
@@ -39,11 +40,11 @@ finrep_sent_name = walk_dir_sent('XXXXXX:/FINREP/')
 #       - FINREP
 def walk_dir_received(dir, topdown=True):
     ok_list = []
-    for root, dirs, files in os.walk(dir):
-        for name in files:
+    #for root, dirs, files in os.walk(dir):
+    for name in os.listdir(dir):
             #print '.acq' type files
             if name.find('.acq') != -1:
-                currentPath = os.path.join(root, name)
+                currentPath = os.path.join(dir, name)
                 filesize = os.path.getsize(currentPath)
                 if filesize == 13:
                     ok_list.append(os.path.join(name))
