@@ -87,23 +87,10 @@ def compare_list(sent_name, received_name):
 print result_bcl_ok
 print result_bcl_not
 
-# If select incremental write, 'w' -> 'a'
-file_bcl_result = open("list_bcl_result.xls", 'w')
-for e1 in result_bcl_ok:
-    file_bcl_result.write(e1 + '\n')
-for e2 in result_bcl_not:
-    file_bcl_result.write(e2 + '\t' +'not received\n')
-
 # FINREP result to list_finrep_result.xls
 (result_finrep_ok, result_finrep_not) = compare_list(finrep_sent_name, finrep_received_name)
 print result_finrep_ok
 print result_finrep_not
-
-file_finrep_result = open("list_finrep_result.xls", 'w')
-for e3 in result_finrep_ok:
-    file_finrep_result.write(e3 + '\n')
-for e4 in result_finrep_not:
-    file_finrep_result.write(e4 + '\t' +'not received\n')
 
 
 # TO DO
