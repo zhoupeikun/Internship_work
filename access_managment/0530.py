@@ -1,5 +1,6 @@
 import os
 import time
+import xlwt
 
 event_file = open('Events.csv', 'r')
 
@@ -50,6 +51,8 @@ for (k1, v1) in name_last.items():
 print result
 
 result_file = open("result.xls", 'w')
+workbook = xlwt.Workbook(encoding = 'ascii')
+worksheet = workbook.add_sheet('sheet')
 
 
 for key in result:
